@@ -41,39 +41,90 @@ FIGURE-04
 A Parallel in Parallel out (PIPO) shift register is used as a temporary storage device and like SISO Shift register it acts as a delay element.
 
 ### Procedure
-/* write all the steps invloved */
+/* write all the steps invloved 
+1.Use quartus software and import required modules.
 
+2.Assign inputs and outputs for shift registers.
 
+3.Assign logic for input to give output at positive edge.
 
-### PROGRAM 
+4.Perform opertaions and produce rtl circuit.
+
+5.end module
+*/
+### PROGRAM 1:
 /*
 Program for  Implementation-of Shift-registers-using-verilog-
-Developed by: 
-RegisterNumber:  
+Developed by: MOHAN RAJ.K
+RegisterNumber:  212221230064
+
+module sipo(c,si,po);
+input c,si;
+output [7:0] po;
+reg [7:0] temp;
+
+always @ (posedge c)
+begin
+temp = {temp[6:0],si};
+end
+assign po = temp;
+endmodule 
 */
+### RTL LOGIC  REGISTERS 
+![rtl 1](https://user-images.githubusercontent.com/95160497/172761037-6cd5817d-5901-46f4-9e62-ef734a8ab526.png)
+### TIMING DIGRAMS FOR SHIFT REGISTERS
+![tt1](https://user-images.githubusercontent.com/95160497/172761182-87fb5793-5df9-40a0-9e7f-b934298e8c87.jpeg)
 
+### PROGRAM 2:
+~~~
+Program for  Implementation-of Shift-registers-using-verilog-
+Developed by: MOHAN RAJ.K
+RegisterNumber:  212221230064
 
-
-
-
-
-### RTL LOGIC  REGISTERS   
-
-
-
-
-
-
-
-
+module piro(c,pi,so,load);
+input [3:0] pi;
+input load,c;
+output reg so;
+reg [3:0] temp;
+always @ (posedge c)
+begin 
+if(load)
+temp <= pi;
+else
+begin
+so<=temp[3];
+temp <={temp[2:0],1'b0};
+end
+end
+endmodule
+~~~
+### RTL LOGIC  REGISTERS
+![rtl 2](https://user-images.githubusercontent.com/95160497/172761357-cbc77b09-fd2b-42f1-b1b2-3e28ee862ea5.png)
 
 ### TIMING DIGRAMS FOR SHIFT REGISTERS
+![tt2](https://user-images.githubusercontent.com/95160497/172761367-f07f22f6-4261-48e1-a4e5-f55bcb3a0ccf.jpeg)
 
+### PROGRAM 3:
+~~~
+Program for  Implementation-of Shift-registers-using-verilog-
+Developed by: MOHAN RAJ.K
+RegisterNumber:  212221230064
 
+module sipo(pi,po,clk);
+input clk;
+input [3:0] pi;
+output reg [3:0] po;
+always @ (posedge clk)
+begin 
+po=pi;
+end
+endmodule 
+~~~
+### RTL LOGIC  REGISTERS
+![rtl 3](https://user-images.githubusercontent.com/95160497/172761381-93829457-a61d-4f68-be4f-657231e55c43.png)
 
-
-
-
-
+### TIMING DIGRAMS FOR SHIFT REGISTERS
+![tt3](https://user-images.githubusercontent.com/95160497/172761412-cee78d67-745b-41ad-b523-739ce4179d69.jpeg)
 
 ### RESULTS 
+THUS THE PROGRAM TO IMPLEMENT SHIFT REGISTERS IS DONE SUCCESSFUL.
